@@ -1,18 +1,30 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
-namespace LabWork
+class Program
 {
-    // Даний проект є шаблоном для виконання лабораторних робіт
-    // з курсу "Об'єктно-орієнтоване програмування та патерни проектування"
-    // Необхідно змінювати і дописувати код лише в цьому проекті
-    // Відео-інструкції щодо роботи з github можна переглянути 
-    // за посиланням https://www.youtube.com/@ViktorZhukovskyy/videos 
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        string text= "Це Приклад тексту з Словами, які Починаються з Великої літери. Another Example Here.";
+
+        // Регулярний вираз для слів з великої літери
+        Regex regex = new Regex(@"\b[A-ZА-ЯЇІЄҐ][a-zа-яїієґ]*\b");
+
+        List<string> wordsWithCapital = new List<string>();
+
+        MatchCollection matches = regex.Matches(text);
+
+        foreach (Match match in matches)
         {
-            
-            Console.WriteLine("Hello World!");
+            wordsWithCapital.Add(match.Value);
+        }
+
+        // Вивід результатів
+        Console.WriteLine("\nСлова з великої літери:");
+        foreach (string word in wordsWithCapital)
+        {
+            Console.WriteLine(word);
         }
     }
 }
